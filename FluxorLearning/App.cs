@@ -2,6 +2,7 @@
 using FluxorLearning.Shared;
 using FluxorLearning.Store;
 using FluxorLearning.Store.CounterUseCase;
+using FluxorLearning.Store.WeatherUseCase;
 
 public class App
 {
@@ -60,6 +61,7 @@ public class App
         do
         {
             Console.WriteLine("1: Increment counter");
+            Console.WriteLine("2: Fetch data");
             Console.WriteLine("x: Exit");
             Console.Write("> ");
             input = Console.ReadLine() ?? "";
@@ -70,6 +72,11 @@ public class App
                     var action = new IncrementCounterAction();
                     _dispatcher.Dispatch(action);
                     break;
+                case "2":
+                    var fetchDataAction = new FetchDataAction();
+                    _dispatcher.Dispatch(fetchDataAction);
+                    break;
+
                 case "x":
                     Console.WriteLine("Program terminated");
                     return;
